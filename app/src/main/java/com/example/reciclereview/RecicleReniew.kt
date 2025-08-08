@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -34,8 +35,10 @@ class RecicleReniew : AppCompatActivity() {
         rvLista.adapter = MensagemAdapter(lista)  // Define o adapter personalizado
 
         // Configuração do LayoutManager (define como os itens serão organizados)
-        rvLista.layoutManager = LinearLayoutManager(this)  // Layout linear (vertical por padrão)
-
+        // Layout linear (vertical por padrão), reverse serve para começar de baixo para cima, recile para ficar reciclavel
+        rvLista.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        //colocar em grade dentro do recyclerView
+        rvLista.layoutManager = GridLayoutManager(this, 2)  // Layout em grade)
         // Observação: O código original tinha um comentário "rvLista.layoutManager" solto
         // que foi mantido como parte da documentação do processo de desenvolvimento
     }
