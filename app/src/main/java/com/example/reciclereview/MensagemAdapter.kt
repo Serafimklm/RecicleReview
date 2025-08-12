@@ -18,18 +18,27 @@ class MensagemAdapter(
         val intemView: View  // View do item individual (inflada do item_lista.xml)
     ) : RecyclerView.ViewHolder(intemView) {
         // Referências para os componentes do layout:
-        val textNome: TextView = intemView.findViewById(R.id.textNome)      // TextView para o nome
-        val textLastMsg: TextView = intemView.findViewById(R.id.textMsg)    // TextView para a última mensagem
-        val textHour: TextView = intemView.findViewById(R.id.texthour)      // TextView para a hora
+   /*     val textNome: TextView = intemView.findViewById(R.id.textNome)      // TextView para o nome
+        val textLastMsg: TextView = intemView.findViewById(R.id.textMsg)*/
+        val textNome: TextView = intemView.findViewById(R.id.TextNomeCard)      // TextView para o nome
+        val textLastMsg: TextView = intemView.findViewById(R.id.TextmsgCard)    // TextView para a última mensagem
+//        val textHour: TextView = intemView.findViewById(R.id.texthour)      // TextView para a hora
+
+
     }
 
     // Metodo chamado quando precisa criar um novo ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MensagemViewHolder {
         // Infla o layout do item (item_lista.xml) dentro do parent (RecyclerView)
         val LayoutInflater = LayoutInflater.from(parent.context)
+
         val intemView = LayoutInflater.inflate(
-            R.layout.item_lista, parent, false
+            R.layout.item_cardview, parent, false
         )
+      // para ativar o itemLista, basta descomentar a linha abaixo
+       /* val intemView = LayoutInflater.inflate(
+            R.layout.item_lista, parent, false
+        )*/
         return MensagemViewHolder(intemView)  // Retorna o ViewHolder com a view inflada
     }
 
@@ -45,6 +54,8 @@ class MensagemAdapter(
         // Preenche as views com os dados do objeto Mensagem:
         mesagemViewHolder.textNome.text = Mensagem.nome         // Define o nome
         mesagemViewHolder.textLastMsg.text = Mensagem.ultimaMsg // Define a última mensagem
-        mesagemViewHolder.textHour.text = Mensagem.hora         // Define a hora
+//        mesagemViewHolder.textHour.text = Mensagem.hora         // Define a hora
+
+
     }
 }

@@ -11,8 +11,7 @@
         android:layout_width="327dp"
         android:layout_height="682dp"
         android:contentDescription="Litens"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,12 +20,19 @@
         app:layout_constraintVertical_bias="0.5"
         tools:ignore="HardcodedText,MissingConstraints"
         tools:listitem="@layout/item_lista"
-        app:spanCount="3"/> <!-- Adicione esta linha -->
+
+
+        app:spanCount="2"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        /> <!-- Adicione esta linha -->
 
     <!--USANDO  app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     O LAIYOUT FICA COMO O DO INSTAGRAM, UM ITEM
      DO LADO DO OUTRO ATE PRENCHER O ESPAÇO LATERAL TOTAL, DAI ELE VAI
      PARA BAIXO DO OUTRO ITEM, E ASSIM POR DIANTE
-     Também é necessário usar  app:spanCount= para deifinir a qtd itens lado a lado-->
+     Também é necessário usar  app:spanCount= para deifinir a qtd itens lado a lado
+      ja no StaggeredGridLayoutManager, o item especifico vai ocupar determinado espaco
+      de acordo com o seu tamanho-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

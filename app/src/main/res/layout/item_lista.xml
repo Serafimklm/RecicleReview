@@ -34,13 +34,15 @@
         android:id="@+id/textMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="152dp"
         android:layout_marginTop="8dp"
         android:text="Last Message"
         app:layout_constraintBottom_toBottomOf="@+id/imagePerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imagePerfil"
         app:layout_constraintTop_toBottomOf="@+id/textNome"
-        app:layout_constraintVertical_bias="0.192" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <TextView
         android:id="@+id/texthour"
@@ -50,8 +52,8 @@
         android:text="02:23PM"
         app:layout_constraintBottom_toBottomOf="@+id/textMsg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imagePerfil"
         app:layout_constraintTop_toTopOf="@+id/textNome"
-        app:layout_constraintVertical_bias="0.62" />
+        app:layout_constraintVertical_bias="0.407" />
 </androidx.constraintlayout.widget.ConstraintLayout>

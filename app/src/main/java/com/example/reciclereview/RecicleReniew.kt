@@ -23,7 +23,7 @@ class RecicleReniew : AppCompatActivity() {
         // Criação da lista de mensagens estática para exemplo
         val lista = listOf(
             Mensagem("joao", "oi", "12:00"),
-            Mensagem("carlos", "hiii", "13:00"),
+            Mensagem("carlos", "hi boddy", "13:00"),
             Mensagem("roberto", "oi", "12:00"),
             Mensagem("rafael", "rafael", "12:00")
         )
@@ -38,8 +38,10 @@ class RecicleReniew : AppCompatActivity() {
         // Layout linear (vertical por padrão), reverse serve para começar de baixo para cima, recile para ficar reciclavel
         rvLista.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         //colocar em grade dentro do recyclerView
-        rvLista.layoutManager = GridLayoutManager(this, 2)  // Layout em grade)
+     //rvLista.layoutManager = GridLayoutManager(this, 2)  // Layout em grade)
         // Observação: O código original tinha um comentário "rvLista.layoutManager" solto
         // que foi mantido como parte da documentação do processo de desenvolvimento
+
+
     }
 }
