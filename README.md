@@ -128,3 +128,4 @@ sequenceDiagram
     Adapter->>ViewHolder: Preenche dados (nome, mensagem, hora)  
 ```  
 
++ CARDVIEW
