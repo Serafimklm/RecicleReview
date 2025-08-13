@@ -1,11 +1,15 @@
 package com.example.reciclereview
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +37,13 @@ class RecicleReniew : AppCompatActivity() {
 
         // Configuração do Adapter com a lista de mensagens
         rvLista.adapter = MensagemAdapter(lista)  // Define o adapter personalizado
+        {
+            Toast.makeText(this, "Abrindo a activity", Toast.LENGTH_SHORT).show()
 
+            startActivity(
+                Intent(this, LinearLayoutActivity2::class.java)  // vai para a outra activity
+            )
+        }
         // Configuração do LayoutManager (define como os itens serão organizados)
         // Layout linear (vertical por padrão), reverse serve para começar de baixo para cima, recile para ficar reciclavel
         rvLista.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -42,6 +52,13 @@ class RecicleReniew : AppCompatActivity() {
         // Observação: O código original tinha um comentário "rvLista.layoutManager" solto
         // que foi mantido como parte da documentação do processo de desenvolvimento
 
+//      para adcionar um pequeno divisor entre os itemn
+     /*   rvLista.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                RecyclerView.VERTICAL
+            )
+        )*/
 
-    }
+}
 }
