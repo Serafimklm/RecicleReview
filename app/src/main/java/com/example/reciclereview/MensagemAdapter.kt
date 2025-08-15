@@ -8,69 +8,51 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-
-// Adapter responsável por gerenciar a lista de mensagens no RecyclerView
+// CLASSE DO ADAPTER - Responsável por gerenciar a exibição dos itens
 class MensagemAdapter(
-    private val lista: List<Mensagem>,  // Lista de objetos Mensagem que será exibida
-    private val clique : () -> Unit // função de clique para exibir um Toast
+    private val clique: () -> Unit  // Função de clique (interliga com o comportamento na Activity)
 ) : Adapter<MensagemAdapter.MensagemViewHolder>() {
 
-    // Classe ViewHolder que mantém referências às views de cada item da lista
-    inner class MensagemViewHolder(
-        val intemView: View  // View do item individual (inflada do item_lista.xml)
-    ) : RecyclerView.ViewHolder(intemView) {
-        // Referências para os componentes do layout:
-   /*     val textNome: TextView = intemView.findViewById(R.id.textNome)      // TextView para o nome
-        val textLastMsg: TextView = intemView.findViewById(R.id.textMsg)*/
-        val textNome: TextView = intemView.findViewById(R.id.TextNomeCard)      // TextView para o nome
-        val textLastMsg: TextView = intemView.findViewById(R.id.TextmsgCard)    // TextView para a última mensagem
-        val ImagePerfil: ImageView = intemView.findViewById(R.id.imagePerfil) // ImageView para a imagem de perfil
-//        val textHour: TextView = intemView.findViewById(R.id.texthour)      // TextView para a hora
+    // LISTA INTERNA - Armazena os dados que serão exibidos (interliga com AtualizarListaDados)
+    private var listaMensagem = mutableListOf<Mensagem>()
 
-
+    // MeTODO PARA ATUALIZAR OS DADOS - Chamado pela Activity quando a lista muda
+    fun AtualizarListaDados(lista: MutableList<Mensagem>) {
+        listaMensagem = lista  // Atualiza a referência da lista (cuidado: veja observação abaixo)
+        notifyDataSetChanged()  // Notifica o RecyclerView que os dados mudaram
     }
 
-    // Metodo chamado quando precisa criar um novo ViewHolder
+    // VIEWHOLDER - Define a estrutura de cada item (interliga com o layout item_cardview.xml)
+    inner class MensagemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textNome: TextView = itemView.findViewById(R.id.TextNomeCard)  // Nome
+        val textLastMsg: TextView = itemView.findViewById(R.id.TextmsgCard)  // Mensagem
+        val ImagePerfil: ImageView = itemView.findViewById(R.id.imagePerfil)  // Imagem
+    }
+
+    // CRIA NOVAS VIEWS - Chamado quando precisa de novos itens visíveis
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MensagemViewHolder {
-        // Infla o layout do item (item_lista.xml) dentro do parent (RecyclerView)
-        val LayoutInflater = LayoutInflater.from(parent.context)
-
-        val intemView = LayoutInflater.inflate(
-            R.layout.item_cardview, parent, false
-        )
-      // para ativar o itemLista, basta descomentar a linha abaixo
-       /* val intemView = LayoutInflater.inflate(
-            R.layout.item_lista, parent, false
-        )*/
-        return MensagemViewHolder(intemView)  // Retorna o ViewHolder com a view inflada
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_cardview, parent, false)  // Infla o layout do item
+        return MensagemViewHolder(itemView)
     }
 
-    // Retorna o total de itens na lista
-    override fun getItemCount(): Int {
-        return lista.size
-    }
+    // RETORNA A QUANTIDADE DE ITENS - Usado pelo RecyclerView
+    override fun getItemCount(): Int = listaMensagem.size
 
-    // Metodo que vincula os dados de um item específico às views do ViewHolder
-    override fun onBindViewHolder(mesagemViewHolder: MensagemViewHolder, position: Int) {
-        val Mensagem = lista[position]  // Obtém o objeto Mensagem na posição atual
+    // VINCULA DADOS ÀS VIEWS - Chamado para cada item visível
+    override fun onBindViewHolder(holder: MensagemViewHolder, position: Int) {
+        val mensagem = listaMensagem[position]
+        holder.textNome.text = mensagem.nome
+        holder.textLastMsg.text = mensagem.ultimaMsg
 
-        // Preenche as views com os dados do objeto Mensagem:
-        mesagemViewHolder.textNome.text = Mensagem.nome         // Define o nome
-        mesagemViewHolder.textLastMsg.text = Mensagem.ultimaMsg // Define a última mensagem
-        mesagemViewHolder.textLastMsg.text = Mensagem.ultimaMsg // Define a última mensagem
-//        mesagemViewHolder.textHour.text = Mensagem.hora         // Define a hora
-
-        //aplicacao de evento de clique
-        val context = mesagemViewHolder.ImagePerfil.context  // aqui voce passa o contexto, nesse caso e o mensagemviewholder
-
-  /*      mesagemViewHolder.ImagePerfil.setOnClickListener {
-            Toast.makeText(context, "Voce clicou na imagem de " + Mensagem.nome, Toast.LENGTH_SHORT).show()
-        }*/
-        mesagemViewHolder.textLastMsg.setOnClickListener {
-
-        }
-        mesagemViewHolder.ImagePerfil.setOnClickListener {
-            clique()
-        }
+        // CONFIGURA O CLIQUE - Interliga com a função passada no construtor
+        holder.ImagePerfil.setOnClickListener { clique() }
     }
 }
+
+/*
+OBSERVAÇÃO IMPORTANTE SOBRE AtualizarListaDados:
+O metodo atual está apenas trocando a referência (listaMensagem = lista), o que pode causar problemas.
+O ideal seria usar listaMensagem.clear() seguido de listaMensagem.addAll(lista) para garantir
+que a mesma lista é mantida e apenas seu conteúdo é atualizado.
+*/
