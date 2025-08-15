@@ -12,20 +12,34 @@
         android:layout_height="682dp"
         android:contentDescription="Litens"
 
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        tools:ignore="HardcodedText,MissingConstraints"
-        tools:listitem="@layout/item_lista"
 
 
         app:spanCount="2"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        /> <!-- Adicione esta linha -->
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:listitem="@layout/item_lista" />
+
+    <Button
+        android:id="@+id/addNovo"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="293dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="114dp"
+        android:text="Adcionar Novo"
+        app:layout_constraintBottom_toBottomOf="@+id/Rview"
+        app:layout_constraintEnd_toEndOf="@+id/Rview"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="@+id/Rview"
+        app:layout_constraintTop_toTopOf="@+id/Rview"
+        app:layout_constraintVertical_bias="0.972" /> <!-- Adicione esta linha -->
 
     <!--USANDO  app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     O LAIYOUT FICA COMO O DO INSTAGRAM, UM ITEM
