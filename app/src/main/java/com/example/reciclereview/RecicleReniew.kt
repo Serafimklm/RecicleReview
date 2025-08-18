@@ -65,8 +65,11 @@ class RecicleReniew : AppCompatActivity() {
 
         // BOTÃO PARA ADICIONAR NOVOS ITENS - Interação principal do usuário
         buttonnovo.setOnClickListener {
+
+            mesagemAdapter.executarOperacao()
+
             // Adiciona novo item à lista (interliga com a lista mutável)
-            lista.add(Mensagem("PEDROCA ATUALIZADO", "'E RUIM DE ATURAR", "13:00"))
+//            lista.add(Mensagem("PEDROCA ATUALIZADO", "'E RUIM DE ATURAR", "13:00"))
             Toast.makeText(this, "ATUALIZANDO", Toast.LENGTH_SHORT).show()
             // Atualiza o adapter com a nova lista (interliga com AtualizarListaDados)
             mesagemAdapter.AtualizarListaDados(lista)
